@@ -109,7 +109,7 @@
 
 - Remove command: 
 
-- A Suppose we want to remove containers permanently which takes up spaces we can run `docker rm ID` e.g `docker rm sleepy_diffie`. (7)
+- A Suppose we want to remove containers permanently which takes up spaces we can run `docker rm ID` e.g `docker rm sleepy_diffie`. We cannot remove running containers in docker. (7)
 
 - B. Suppose we want to remove an image permanently run command `docker rmi image_name`. Before deleting an image we need to be sure that no containers are running off to that inage .(9 10 )
 
