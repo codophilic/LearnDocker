@@ -127,6 +127,8 @@
 Docker provides to run such images in the background like a detach state. The container will continue to run in the backend. (14)
 In the Detach state the docker provides an ID which can be use to attach it again.(15)
 
+- Run a container with provided name: docker run -d --name name imagename
+
 
 
 
