@@ -101,7 +101,7 @@
 
 - List command: 
 
-- A. Suppose if we run `docker ps` it will list all running containers with some information about them like ID, image name, command, creation time etc. Each containers gets automatically a random ID and random name. (5)
+- A. Suppose if we run `docker ps` or `docker container ls `it will list all running containers with some information about them like ID, image name, command, creation time etc. Each containers gets automatically a random ID and random name. (5)
 
 - B. Suppose we want to list images  run command `docker images`. (8)
 
@@ -129,6 +129,28 @@ In the Detach state the docker provides an ID which can be use to attach it agai
 
 - Run a container with provided name: docker run -d --name name imagename
 
+- Get the image based on Tag: Suppose if we require a particular of image to be run by the container we run command `docker run imagename:versionNumber`. So the `imagename:versionNumber` is called Tag. If we don't specifiy tag docker will consider the latest tag from the docker hub.(16)
+
+- Providing STDIN: When we a image is run by container and suppose the image is requires input, docker container simple execute the task without prompting for an input. Docker containers does not listen to STDIN even though you are attached to the terminal. Docker containers runs in a non interactive mode. 
+So to provide the input to make the docker containers as a interactive mode use `docker run -i imagename`. But even providing -i as an interactive option it won't show the prompt ( like any message which ask for an input e.g Enter the user name) because the due to -i it is attach on the OS terminal and not on the container terminal. So to get that prompt for questioning use `-it`. (17)
+
+
+- Inspect Container: To get more details of a container run command `docker inspect ID_or_name`. (22)
+
+- Logs of a container: Suppose we ran a detach container and we need to view logs of it so run command `docker logs ID_or_name`. (23)
+
+
+
+- PORT Mapping: The underlying host where docker is installed is called a docker host or docker engine. Suppose we have web server application run on a docker container , we can see the web server but how other users can access my web application? Suppose my application runs on PORT 5000 so i can access it using that port number but what IP must be use for accessing it by me? Docker provides each containers IP so using that IP or using docker host IP. But containers host IP are only accessible from docker host machine (for me) for other users we need to provide docker host IP with required particular port mapping for accessing our containerized web application. 
+To get container IP `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id
+`
+Suppose we want to users to access our web server using port 80 and my docker host ip is 192.168.1.5 so we can do it by running port mapping command `docker run -p 80:5000 image_name`. So we can map multiple port with the provided port of the container , but we cannot use the same mapped port again for other application. 
+
+(18 19 20 24)
+
+Exposed ports are 3456 and 80 and publish ports are 3456 and 38080.
+
+- Volume Mapping: Suppose we are running a mysql container and we added lost of data in that container. Suppose we stop or remove the container all the data inside that container gets destroyed. So to map those inside data of that container with outside container folder within the docker host run the command `docker run -v folderoutside:folderinsideContainer imagename`. (21) 
 
 
 
