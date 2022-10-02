@@ -166,7 +166,26 @@ Exposed ports are 3456 and 80 and publish ports are 3456 and 38080.
 
 ### Creating an Image of n application 
 
-- List down all 
+- Here we are containerize an application a simple web application based on flask.
+
+- Before creating an image list down all requirements and steps for deploying an application. (29)
+
+- After listing down all the steps create a file name **Dockerfile** which is our image. After writting the dockerfile we need to build it and provide it a tag. So use command `docker build Dockerfile -t DockerHubUsername/provideImageName`. 
+
+- To make is available we need to push that build file. So run the command `docker push DockerHubUsername/provideImageName`. (30)
+
+### Components of Dockerfile
+
+- Dockerfile consits of two components 1. Instruction and 2. Argument
+
+- Instruction are **FROM , RUN , COPY , ENTRYPOINT** (31). Each of them perform specific action while creating an image. 
+
+- Arguments are the (32) text provided by users. 
+
+- Every dockerfile will have an image based on OS and it will always start **FROM** instruction. The **RUN** instructions tells docker to install all dependencies (33). The **COPY** instruction copies the local files to the docker image. So here we are copying all the files *.* to inside of image folder */opt/source-code*. The **ENTRYPOINT** instruction allow us to specify a command that will be run when the image is run by the container.
+
+### Images Layered architecture
+
 
 
 
