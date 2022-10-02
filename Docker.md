@@ -186,7 +186,15 @@ Exposed ports are 3456 and 80 and publish ports are 3456 and 38080.
 
 ### Images Layered architecture
 
+- When docker builds an image it creates multiple layers. Each line of instructions creates a new layer in the Docker image taking the changes of the previous layers.
 
+- Each layers stores the changes from the previous layer, it is reflected in the size. We can see this layers and information by running the command `docker history DockerHubUsername/provideImageName`. (34)
+
+- We can see various steps involved when we run a docker build command.(35)
+
+- All the layers are cached and if we one layers fails all layers after it does not get executed. After fixing the failure layer, when we run the docker build command it will directly starts from that layer where it fails. Even if we add a new layer in the dockerfile it will not start all over again. (36) Due to this images are build at a faster rate. This is helpful when there is an update in the source code of an application.
+
+### CMD vs ENTRYPOINT
 
 
 
