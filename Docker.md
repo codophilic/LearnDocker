@@ -153,4 +153,22 @@ Exposed ports are 3456 and 80 and publish ports are 3456 and 38080.
 - Volume Mapping: Suppose we are running a mysql container and we added lost of data in that container. Suppose we stop or remove the container all the data inside that container gets destroyed. So to map those inside data of that container with outside container folder within the docker host run the command `docker run -v folderoutside:folderinsideContainer imagename`. (21) 
 
 
+## Environment Variables
+
+- Suppose there is a web-server application which uses a functionality background color. The web-server application sets that functionality as an Environment variable which state whenever we run that web-server application we can provide our own color to that environment variable and the web-page will have that background color. So here we have set environment variable as **APP_COLOR**. (25)
+
+- Once that application is dockerized to provide that environment variable name use command `docker run -e ENVIRONMENT_VARIABLE_NAME=VALUE imagename`. (26,27)
+
+- Inspect environment variable: Find all the environment variables of a running container using command `docker inspect CONTAINER_ID` which will have Config parameters which list all environment variables. (28)
+
+
+## Docker Images
+
+### Creating an Image of n application 
+
+- List down all 
+
+
+
+
 
