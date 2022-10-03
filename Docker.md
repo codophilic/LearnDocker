@@ -196,6 +196,29 @@ Exposed ports are 3456 and 80 and publish ports are 3456 and 38080.
 
 ### CMD vs ENTRYPOINT
 
+- Containers are mean to an instance of a web servers or application or database or compute or perform analysis. They are not mean to host an OS. Once the task is complete the containers exits it only lives as long as the process inside ID is alive. Now if we see the the actual image of UBUNTU , there is CMD ["Bash"] which the command to run the container. Now BASH is not a process or a web server its a terminal which listen the inputs from it and display the outputs. So when we run `docker run ubuntu` the image search for BASH terminal which is not attach to the container by the docker and therefore the container exits. So here we can override that command by provide our own sets of command e.g `docker run ubuntu sleep 5` so our CMD provided is **sleep 5** which overides the CMD["Bash"] command. (37)
+
+- How to make it permanent lets say whenever we run the ubuntu image , it must execute the sleep command. So we create our own image e.g **ubuntu-sleeper** and mentioned the command in it. (38) To write the command we need to follow the syntax
+**`CMD command command_parameters`** OR **`CMD ["command","command_parameters"]`**.
+
+- Suppose we need to override our **ubuntu-sleeper** image with command sleep 10. But instead of again mentioning the sleep command can we provide the seconds time parameter? providing custom time?. Here we can use the **ENTRYPOINT** instead of command. (39).
+
+- Suppose if the users don't provide the operand required to run the command we need to add our default operand. We need to use both **ENTRYPOINT** and **CMD**. So if i don't specify parameter in the ENTRYPOINT it will take the default parameter from cmd (40). Both must be in JSON format.
+
+- So in **CMD** instruction , command line parameters passed will be override entirely whereas in case of **ENTRYPOINT** the command line parameters will get appended.
+
+## Network
+
+
+
+
+
+
+
+
+
+
+
 
 
 
