@@ -152,6 +152,8 @@ Exposed ports are 3456 and 80 and publish ports are 3456 and 38080.
 
 - Volume Mapping: Suppose we are running a mysql container and we added lost of data in that container. Suppose we stop or remove the container all the data inside that container gets destroyed. So to map those inside data of that container with outside container folder within the docker host run the command `docker run -v folderoutside:folderinsideContainer imagename`. (21) 
 
+- Run multiple parameters using this `docker run -p 38282:8080 --name=blue-app -e APP_COLOR=blue -d kodekloud/simple-webapp`.
+
 
 ## Environment Variables
 
@@ -170,9 +172,15 @@ Exposed ports are 3456 and 80 and publish ports are 3456 and 38080.
 
 - Before creating an image list down all requirements and steps for deploying an application. (29)
 
-- After listing down all the steps create a file name **Dockerfile** which is our image. After writting the dockerfile we need to build it and provide it a tag. So use command `docker build Dockerfile -t DockerHubUsername/provideImageName`. 
+- After listing down all the steps create a file name **Dockerfile** which is our image. After writting the dockerfile we need to build it and provide it a tag. So use command `docker build Dockerfile -t DockerHubUsername/provideImageName`. Syntax `docker build  -t ImageName:TagName directory`
 
 - To make is available we need to push that build file. So run the command `docker push DockerHubUsername/provideImageName`. (30)
+
+- Check about image using `docker inspect imagename`.
+
+- Check which OS does the downloaded images used docker run python:3.6 cat /etc/*release*
+
+- suppose if a latest version is huge in size we can use its previous version which has less size.
 
 ### Components of Dockerfile
 
@@ -194,6 +202,13 @@ Exposed ports are 3456 and 80 and publish ports are 3456 and 38080.
 
 - All the layers are cached and if we one layers fails all layers after it does not get executed. After fixing the failure layer, when we run the docker build command it will directly starts from that layer where it fails. Even if we add a new layer in the dockerfile it will not start all over again. (36) Due to this images are build at a faster rate. This is helpful when there is an update in the source code of an application.
 
+- The layers of image are called docker image layers. We cannot edit these layers once the build is completed  which is always in the Read-mode. When we run a container based off that particular image, docker creates a container layer on top of that image layers which is a read-write layer. This container layer stores all the data related to that particular container e.g logs, temp files etc. The life of this container layer is as long as the container is alive. When the container is destroyed all the stored data changes gets destroyed. (46).
+
+- Suppose a code is used in the image and that image is used by multiple containers and if we want to modify that image for testing purpose it might affect all the containers. So to test our requirement with the source code file we can logged into one container and modify that code file for that particular container only and check our testing. Docker creates copy of that source code file and present it in the container layer where we have read-write access. So the images is not affected. (47)
+
+- Now the source code file change is stored in the container layer and it will be there as long as container is alive. So to persist our changes we can add volumes to the containers. *( Refer the storage section )*
+
+
 ### CMD vs ENTRYPOINT
 
 - Containers are mean to an instance of a web servers or application or database or compute or perform analysis. They are not mean to host an OS. Once the task is complete the containers exits it only lives as long as the process inside ID is alive. Now if we see the the actual image of UBUNTU , there is CMD ["Bash"] which the command to run the container. Now BASH is not a process or a web server its a terminal which listen the inputs from it and display the outputs. So when we run `docker run ubuntu` the image search for BASH terminal which is not attach to the container by the docker and therefore the container exits. So here we can override that command by provide our own sets of command e.g `docker run ubuntu sleep 5` so our CMD provided is **sleep 5** which overides the CMD["Bash"] command. (37)
@@ -209,9 +224,67 @@ Exposed ports are 3456 and 80 and publish ports are 3456 and 38080.
 
 ## Network
 
+- When we install docker, it creates 3 defaults networks automatically. Bridge,None and Host.
+
+- If we want to attach any of the network specify it while running the docker command. (41)
+
+- Bridge is the default network which gets attached to the containers. All the containers gets an internally IP which usually ranges 172.17.. series. The containers can access each other using this internal IP's.
+
+- Host network is the network of the Docker Host. So whenever we want to access container externally we map this to the host network port. So when we run a web server on a host port it will be automatically accessible on the host port but we won't able to run multiple containers on the same port.
+
+- With the none network , containers are not attach to any network and does not have any access to the external network or any other containers. They run in an isolated network.
+(42)
+
+- Docker crates one internal network bridge , so to have multiple internal network bridge using the command (43)
+
+- By using the inspect command, we can check which type of network is assign to the container.(44)
+
+- Whenever the system gets reboot , its not sure the container will have the same IP ID.
+
+## Docker Storage system
+
+- Docker stores the data on the local file system. When we install docker , it creates a folder structure */var/lib/Docker* (Linux) , *C:\ProgramData\DockerDesktop* (Windows) and *~/Library/Containers/com.docker.docker/Data/vms/0/* (MacOS).
+
+- Under these there are multiple folders. Under this multiple folders docker manages the files system for images and containers. All the images are stored under image folders.(45)
+
+- Volumes are used to persist the data of the container. So first we need to create a volume for that container by running command `docker volume create volume_nameforthat_container`. This will create volume_nameforthat_container folder under volume folder. We need to mount this volume on the container by running the command `docker run -v volume_nameforthat_container:directory_of_image_wheredataispresent imagename`. These gets stored under the docker host. If we don't run the command `docker volume create volume_nameforthat_container` and run the command `docker run -v volume_nameforthat_container:directory_of_image_wheredataispresent imagename` it will automatically create the volume and mount it on that container. (48). This is called volume mounting.
+
+- Suppose we want to mount the data in an external directory under docker host by not creating volume under docker host, we can do this by running the command `docker run -v external_complete_directory_underdockerhost:directory_of_image_wheredataispresent imagename`. This is called Bind mounting. (49)
+
+- The new way to mount the volumes on the container.(50)
+
+- Docker uses storage drivers to enable the layer architecture of images and perfoming mount operations. The common storage drivers are belows. Storage driver depends on OS. Overlays2 for Ubuntu. (51)
+
+## Docker Compose
+
+- When an application uses multiple images and those images needs to be connected with each other use use a docker-compose.yml file to perform this. Using docker compose we can create a configuration file in YAML format and put together different services and option specific to this to run them. This is applicable on single docker host. (52) 
+
+- Sample application - voting appplication. The voting-app is a simple application which provides user interface to vote which is developed in python. In memory DB, when the user makes selection the vote is stored in the redis. The provided vote is process by worker which is an application written in .NET .The worker application takes the new vote and update the data base which is in PostgreSQL. This SQL has tables which is simply the category. Finally the result is displayed in result-app which is web application based on NodeJS. (53)
+
+- Now all the images for the voting application are build now we are running each containers seperately. Now to link these application which each other we use a parameter `--link` (which will be deprecated). (54). Link can be use to link multiple container. (55 56) 
+
+- So we can use all the command and create a docker-compose file. After writing the docker-compose.yml file we run the file using `docker-compose up`. (57)
+
+- To build an image we can use build key. (58)
+
+- Different version of docker compose file.(59)
+
+## Docker registry (Docker Hub)
+
+- Whenever we run a docker command `docker run imagename` it first find if the image is present locally if not then pull that image from docker registry. 
+
+- The complete naming format is like **imagename(Username)/Imagename(Repositoryname)**. If we don't provide username docker by default assume the repository name as username. (60)
+
+- The registry repository can be public or private. To use an image of private repository first we need to login using commands.(61)
+
+- In organization suppose we want to deploy the image by not making it private and not accessible to all. We can do this by using tag. (62)
 
 
+## Orchestration
 
+- Container Orchestration is a solution which consists sets of tools and scripts that can help docker host containers to have multiple docker host that host 1000's of containers so even if one host fails the application will be still accessible due to other containers.
+
+- Container Orchestration helps to deploy all the instance on multiple host using single command based on docker swarm. Due to Orchestration we can scale up or down the load and can increase or decrease the load based on the traffic.
 
 
 

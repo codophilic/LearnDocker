@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+  redis:
+    image: redis
+  clickcounter:
+    image: kodekloud/click-counter
+    depends_on:
+      - redis
+    ports:
+      - 8085:5000
+
