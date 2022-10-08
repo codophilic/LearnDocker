@@ -239,7 +239,13 @@ Exposed ports are 3456 and 80 and publish ports are 3456 and 38080.
 
 - By using the inspect command, we can check which type of network is assign to the container.(44)
 
+- `docker network ls` command list all network on the host.
+
+- We can inspect network also. `docker network inspect bridge`
+
 - Whenever the system gets reboot , its not sure the container will have the same IP ID.
+
+- `docker run --name alpine-2 --network none alpine`
 
 ## Docker Storage system
 
