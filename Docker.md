@@ -369,22 +369,39 @@ Containers  | VM
 
 ### CMD vs ENTRYPOINT
 
-- Containers are mean to an instance of a web servers or application or database or compute or perform analysis. They are not mean to host an OS. Once the task is complete the containers exits it only lives as long as the process inside ID is alive. Now if we see the the actual image of UBUNTU , there is CMD ["Bash"] which the command to run the container. Now BASH is not a process or a web server its a terminal which listen the inputs from it and display the outputs. So when we run `docker run ubuntu` the image search for BASH terminal which is not attach to the container by the docker and therefore the container exits. So here we can override that command by provide our own sets of command e.g `docker run ubuntu sleep 5` so our CMD provided is **sleep 5** which overides the CMD["Bash"] command. (37)
+- Containers are mean to run an instance of a web server or application or database or compute or perform analysis. They are not mean to host an OS. Once the task is complete the containers exits it only lives as long as the process inside ID is alive. 
 
-- How to make it permanent lets say whenever we run the ubuntu image , it must execute the sleep command. So we create our own image e.g **ubuntu-sleeper** and mentioned the command in it. (38) To write the command we need to follow the syntax
+- Now if we see the actual image of UBUNTU, there is **CMD ["Bash"]** which is the command to run the container. Now BASH is not a process or a web server it's a terminal which listen the inputs from it and display the outputs. 
+
+- So when we run `docker run ubuntu` the image search for BASH terminal which is not attached to the container by the docker and therefore the container exits. So here we can override that command by provide our own sets of command e.g. `docker run ubuntu sleep 5` so our CMD provided is **sleep 5** which overrides the **CMD["Bash"]** command.
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/37.jpg)
+
+- How to make it permanent lets say whenever we run the ubuntu image, it must execute the sleep command. So we create our own image e.g. **ubuntu-sleeper** and mentioned the command in it. To write the command we need to follow the syntax
 **`CMD command command_parameters`** OR **`CMD ["command","command_parameters"]`**.
 
-- Suppose we need to override our **ubuntu-sleeper** image with command sleep 10. But instead of again mentioning the sleep command can we provide the seconds time parameter? providing custom time?. Here we can use the **ENTRYPOINT** instead of command. (39).
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/38.jpg)
 
-- Suppose if the users don't provide the operand required to run the command we need to add our default operand. We need to use both **ENTRYPOINT** and **CMD**. So if i don't specify parameter in the ENTRYPOINT it will take the default parameter from cmd (40). Both must be in JSON format.
+- Suppose we need to override our **ubuntu-sleeper** image with command sleep 10. But instead of again mentioning the sleep command can we provide the seconds time as an operand parameter? Providing custom time?. Here we can use the **ENTRYPOINT** instead of command.
 
-- So in **CMD** instruction , command line parameters passed will be override entirely whereas in case of **ENTRYPOINT** the command line parameters will get appended.
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/39.jpg)
 
-## Network
+- Suppose if the users don't provide the operand required to run the command we need to add our default operand. We need to use both **ENTRYPOINT** and **CMD**. So if user don't specify parameter in the ENTRYPOINT it will take the default parameter from cmd. Both must be in JSON format.
 
-- When we install docker, it creates 3 defaults networks automatically. Bridge,None and Host.
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/40.jpg)
 
-- If we want to attach any of the network specify it while running the docker command. (41)
+- So in **CMD** instruction, command line parameters passed will be overridden entirely whereas in case of **ENTRYPOINT** the command line parameters will get appended.
+
+## Docker Network
+
+- When we install docker, it creates 3 defaults networks automatically. 
+    1. Bridge
+    2. None
+    3. Host
+
+- If we want to attach any of the network specify it while running the docker command `docker run --network=network_name Imagename`.
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/41.jpg)
 
 - Bridge is the default network which gets attached to the containers. All the containers gets an internally IP which usually ranges 172.17.. series. The containers can access each other using this internal IP's.
 
