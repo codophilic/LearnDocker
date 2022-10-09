@@ -50,6 +50,8 @@ tech agrees to run on that OS) and other dependencies.
 
 ## Comparing Virtual machines and Containers.
 
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/2.PNG)
+
 Containers  | VM
 ------------- | -------------
  In Docker the underlying hardware is shared in the system, on top of it the OS and then the Docker installed on that OS. Docker manages the containers and run with their libraries and dependencies. | In Virtual machines, there is a hypervisor (A hypervisor, also known as a virtual machine monitor or VMM, is software that creates and runs virtual machines (VMs). A hypervisor allows one host computer to support multiple guest VMs by virtually sharing its resources, such as memory and processing.) on top of the hardware and on them the VM are there. Each VM has its own OS inside it with its dependencies and libraries.
@@ -58,37 +60,48 @@ Containers  | VM
 
 - ***Mostly Dockers and VM work together for an application. Dockers containers are hosted on VM's.***
 
-![](https://github.com/codophilic/LearnDocker/blob/main/Docker/2.PNG)
-
 
 ## Images and Containers.
 
-- Images are read-only templates containing instructions for creating a container. A Docker image creates containers to run on the Docker platform.
+- **Images:**
 
-- Think of an image like a blueprint or snapshot of what will be in a container when it runs.
+   - Images are read-only templates containing instructions for creating a container. A Docker image creates containers to run on the Docker platform. Think of an image like a blueprint or snapshot of what will be in a container when it runs. Images are built as a series of layers. Layers are assembled on top of one another. 
 
-- Images are built as a series of layers. Layers are assembled on top of one another. 
+    - Let's say we want to create a Docker image of a Hello World Java application. The first thing we need to think about is what does our application need. Firstly it is a Java application, so we will need a JVM. OK, this seems easy, but what does a JVM need to run? It needs an Operating System. Therefore, our Docker image will have an Operating System layer, a JVM, and then our Hello World application.
 
--Let's say we want to create a Docker image of a Hello World Java application. The first thing we need to think about is what does our application need.
+    - A major advantage of Docker is its large community. If we want to build an image, we can go to Docker Hub and search if the image we need is available.
 
-- To start, it is a Java application, so we will need a JVM. OK, this seems easy, but what does a JVM need to run? It needs an Operating System. Therefore, our Docker image will have an Operating System layer, a JVM, and our Hello World application.
+- **Containers:**
+    
+    - A container is an instance of an image. Each container can be identified by its ID or by a unique name. Going back to our Java development analogy, we could say that a container is like an instance (*object*) of a class. So images is a class and container is an object or instance of that class.
 
-- A major advantage of Docker is its large community. If we want to build on to an image, we can go to Docker Hub and search if the image we need is available.
+    - Docker defines 7 states for a container:
+        - Created
 
-- A container is an instance of an image. Each container can be identified by its ID. Going back to our Java development analogy, we could say that a container is like an instance of a class. So images is a class and container is an object or instance of that class.
+        - Restarting
+        
+        - Running
+        
+        - Removing
+        
+        - Paused
+        
+        - Exited
+        
+        - Dead. 
 
-- Docker defines seven states for a container: created, restarting, running, removing, paused, exited, and dead. This is important to know. Since a container is just an instance of the image, it doesn't need to be running.
+    - This is important to know. Since a container is just an instance of the image, it doesn't need to be running all time.
 
-- E.g In docker if run command, docker run hello-world  
+- For an example, in docker if run command, **`docker run hello-world`**  
 
-1) docker: It is docker engine and used to run docker program. It tells to the operating system that you are running docker program.
+    1) **`docker`**: It is docker engine and used to run docker program. It tells to the operating system that you are running docker program.
 
-2) run: This subcommand is used to create and run a docker container.
+    2) **`run`**: This subcommand is used to create and run a docker container.
 
-3) hello-world: It is a name of an image. You need to specify the name of an image which is to load into the container.
+    3) **`hello-world`**: It is a name of an image. You need to specify the name of an image which is to load into the container.
 
 
-## Docker Hub
+## Docker Hub/ Docker Registry
 
 - We can consider Docker Hub as a service from Docker for locating and distributing containers for each image within the specified team. It can manage the sharing and storage of Docker image.
 
@@ -96,9 +109,9 @@ Containers  | VM
 
 ## Installing Docker
 
-- Here we are installing a docker on windows host having linux vm which is Ubuntu OS. Commands used were curl -fsSL https://get.docker.com -o get-docker.sh , sudo sh get-docker.sh 
+- Here we are installing a docker on Windows host having Linux vm which is Ubuntu OS. Commands used is `curl -fsSL https://get.docker.com -o get-docker.sh` and `sudo sh get-docker.sh`. 
 
-- The installation steps will vary for windows and MacOS.
+- The installation steps will vary for Windows and macOS.
 
 ## Running a Docker command
 
