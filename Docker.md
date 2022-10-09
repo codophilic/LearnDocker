@@ -50,11 +50,18 @@ tech agrees to run on that OS) and other dependencies.
 
 ## Comparing Virtual machines and Containers.
 
-- In case of docker we have the underlying hardware, on top of it the OS and then the Docker installed on that OS. Docker manages the containers and run with their libraries and dependencies. Incase of Virtual machines there is a hypervisor (A hypervisor, also known as a virtual machine monitor or VMM, is software that creates and runs virtual machines (VMs). A hypervisor allows one host computer to support multiple guest VMs by virtually sharing its resources, such as memory and processing. )on top of the hardware and on them the VM are there. Each VM has its own OS inside it with its dependencies and libraries.
+Containers  | VM
+------------- | -------------
+ In Docker the underlying hardware is shared in the system, on top of it the OS and then the Docker installed on that OS. Docker manages the containers and run with their libraries and dependencies. | In Virtual machines, there is a hypervisor (A hypervisor, also known as a virtual machine monitor or VMM, is software that creates and runs virtual machines (VMs). A hypervisor allows one host computer to support multiple guest VMs by virtually sharing its resources, such as memory and processing.) on top of the hardware and on them the VM are there. Each VM has its own OS inside it with its dependencies and libraries.
+ In dockers, containers are lightweight which also makes boot up process faster. |  In VM, higher utilization of hardware takes place since there are multiple OS kernels. It also consumes higher disk space.
+ Docker containers have less isolation and more resources are shared between the containers. | VM's have complete isolation from each other. Since VM's don't rely on the underlying OS or kernel, we can run different OS on same system. 
 
-- Incase of VM, higher utilization of hardware takes place since there are multiple OS kernels. It also consume higher disk space. Whereas dockers containers are light weight which also makes boot up process faster.
 
-- Docker containers has less isolation and more resources are shared between the containers whereas VM's have complete isolation from each other. Since VM's don't rely on the underlying OS or kernel, we can run different OS. (2)
+- In Docker the underlying hardware is shared in the system, on top of it the OS and then the Docker installed on that OS. Docker manages the containers and run with their libraries and dependencies. In Virtual machines, there is a hypervisor (A hypervisor, also known as a virtual machine monitor or VMM, is software that creates and runs virtual machines (VMs). A hypervisor allows one host computer to support multiple guest VMs by virtually sharing its resources, such as memory and processing.) on top of the hardware and on them the VM are there. Each VM has its own OS inside it with its dependencies and libraries.
+
+- In VM, higher utilization of hardware takes place since there are multiple OS kernels. It also consumes higher disk space. In dockers, containers are lightweight which also makes boot up process faster.
+
+- Docker containers have less isolation and more resources are shared between the containers whereas VM's have complete isolation from each other. Since VM's don't rely on the underlying OS or kernel, we can run different OS. (2)
 
 - Moslty Dockers and VM work together for an application. Dockers containers are hosted on VM's.
 
