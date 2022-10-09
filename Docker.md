@@ -122,11 +122,13 @@ Containers  | VM
 
 ## Docker commands
 
-- <h3>Run command:</h3> 
+- <h3>Run containers:</h3> 
 
     - Suppose if we run `docker run nginx`, this will run an instance of the nginx application from the docker host (*if it exists on the machine*) and if the image is not found then it will reach the docker hub to find the image, and it will pull that image down in the machine (*it happens for the first time*).
 
-![](https://github.com/codophilic/LearnDocker/blob/main/Docker/4.PNG)
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/4.PNG)
+
+    - Run a container with provided name using command `docker run --name=container_name imagename`. 
 
 - <h3>List command:</h3> 
 
@@ -134,62 +136,125 @@ Containers  | VM
 
     ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/5.PNG)
 
-    - **Images:** Suppose we want to list images  run command `docker images`.
+    - **Images:** Suppose we want to list images run command `docker images`.
     
     ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/8.PNG)
 
 
 - <h3>Stop Command:</h3>
-    - Suppose if we want to stop a container we need to have its ID or name e.g `docker stop sleepy_diffie`.
+    - Suppose if we want to stop a container, we need to have its ID or name e.g `docker stop sleepy_diffie` OR `docker stop container_ID`.
 
     ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/6.PNG)
 
-- Remove command: 
+- <h3>Remove command:</h3> 
 
-- A Suppose we want to remove containers permanently which takes up spaces we can run `docker rm ID` e.g `docker rm sleepy_diffie`. We cannot remove running containers in docker. (7)
+    - **Containers:** Suppose we want to remove containers permanently which takes up spaces we can run `docker rm ID`. We cannot remove running containers in docker.
 
-- B. Suppose we want to remove an image permanently run command `docker rmi image_name`. Before deleting an image we need to be sure that no containers are running off to that inage .(9 10 )
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/7.PNG)
 
-- docker rm $(docker ps -aq) removes all containers.
+    - **Images:** Suppose we want to remove an image permanently run command `docker rmi image_name`. Before deleting an image we need to be sure that no containers are running off to that image.
 
-- docker rmi $(docker images -q) removes all images
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/9.PNG)
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/10.PNG)
 
-- Pull Command: We can just pull the image to store it on the host and not run the container. Command is `docker pull imagename`. (11)
+    - To remove all containers use command `docker rm $(docker ps -aq)`.
 
-- Containers lifespan: Containers are not meant to host an OS they are meant to run a specific task or process such as to host an instance of an image. Once the task is completed the container exits. A container only lives as long as the process inside it is alive. If the service inside the container is stopped or crash, then the container exits. You can refer the example whalesay image where the docker container after completion exited itself.
+    - To remove all images `docker rmi $(docker images -q)`.
 
-- Execute command: Suppose we want to run execute some commands on running containers we can do it using command `docker exec container_name COMMAND`. When we run `docker run ubuntu` it gets exited immedietly so we use a `sleep` command over it.  (12)
+- <h3>Pull Command:</h3>
 
-- Attach an Detach: Suppose when we run a container which uses an images that runs on CLI/ foreground like running a web server it called an attach state. This makes difficult to add any inputs to the docker containers.(13)
-Docker provides to run such images in the background like a detach state. The container will continue to run in the backend. (14)
-In the Detach state the docker provides an ID which can be use to attach it again.(15)
+    - We can just pull the image to store it on the host and not run the container. Command is `docker pull imagename`.
 
-- Run a container with provided name: docker run -d --name name imagename
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/11.PNG)
 
-- Get the image based on Tag: Suppose if we require a particular of image to be run by the container we run command `docker run imagename:versionNumber`. So the `imagename:versionNumber` is called Tag. If we don't specifiy tag docker will consider the latest tag from the docker hub.(16)
+- <h3>Containers lifespan:</h3> 
 
-- Providing STDIN: When we a image is run by container and suppose the image is requires input, docker container simple execute the task without prompting for an input. Docker containers does not listen to STDIN even though you are attached to the terminal. Docker containers runs in a non interactive mode. 
-So to provide the input to make the docker containers as a interactive mode use `docker run -i imagename`. But even providing -i as an interactive option it won't show the prompt ( like any message which ask for an input e.g Enter the user name) because the due to -i it is attach on the OS terminal and not on the container terminal. So to get that prompt for questioning use `-it`. (17)
+    - Containers are not meant to host an OS they are meant to run a specific task or process such as to host an instance of an image. Once the task is completed the container exits. 
+    
+    - A container only lives as long as the process inside it is alive. If the service inside the container is stopped or crash, then the container exits. You can refer the example whalesay image where the docker container after completion exited itself.
+
+- <h3>Execute command:</h3>
+
+    - Suppose we want to run execute some commands on running containers we can do it using command `docker exec container_name COMMAND`. 
+    
+    - Consider an example, when we run `docker run ubuntu`, the container gets exited immediately. We can use a `sleep` command over it. Basically a command sent to the container to override its image default command and execute with the command provided.
+
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/12.PNG)
+
+- <h3>Attach and Detach:</h3>
+
+    - A container which uses an image that runs on CLI/ foreground like running a web server it called an **ATTACH** state. This makes difficult to add any inputs to the docker containers.
+
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/13.PNG)
+    
+    - Docker provides to run such images in the background like a **DETACH** state. The container will  continue to run in the backend. 
+
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/14.PNG)
+
+    - In the Detach state the docker provides an ID which can be used to attach it again. It is always suggested to run a container in detach state.
+
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/15.PNG)
 
 
-- Inspect Container: To get more details of a container run command `docker inspect ID_or_name`. (22)
+- <h3>Get the image based on Tag:</h3>
 
-- Logs of a container: Suppose we ran a detach container and we need to view logs of it so run command `docker logs ID_or_name`. (23)
+    - Suppose we require a particular version of image to be run by the container, we run command `docker run imagename:versionNumber`. So the **`imagename:versionNumber`** is called **Tag**. If we don't specify tag docker will consider the latest tag from the docker hub.
+
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/16.PNG)
+
+- <h3>Providing STDIN:</h3> 
+
+    - When an image is run by container and suppose the image requires some input, docker container simple execute the task without prompting for an input. Docker containers do not listen to STDIN even though you are attached to the terminal. 
+
+    - Docker containers run in a non-interactive mode. 
+
+    - So to provide the input to make the docker containers as an interactive mode use `docker run -i imagename`. But sometimes even providing **-i** as an interactive option it won't show the prompt (like any message which ask for an input e.g. Enter the username) because the due to **-i** it is attach on the OS terminal and not on the container terminal. So to get that prompt for questioning use **`-it`**. 
+
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/17.PNG)
 
 
+- <h3>Inspect Container:</h3> 
 
-- PORT Mapping: The underlying host where docker is installed is called a docker host or docker engine. Suppose we have web server application run on a docker container , we can see the web server but how other users can access my web application? Suppose my application runs on PORT 5000 so i can access it using that port number but what IP must be use for accessing it by me? Docker provides each containers IP so using that IP or using docker host IP. But containers host IP are only accessible from docker host machine (for me) for other users we need to provide docker host IP with required particular port mapping for accessing our containerized web application. 
-To get container IP `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id
-`
-Suppose we want to users to access our web server using port 80 and my docker host ip is 192.168.1.5 so we can do it by running port mapping command `docker run -p 80:5000 image_name`. So we can map multiple port with the provided port of the container , but we cannot use the same mapped port again for other application. 
+    - To get more details of a container or image run command `docker inspect container_ID/Imagename`. 
 
-(18 19 20 24)
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/22.PNG)
 
-Exposed ports are 3456 and 80 and publish ports are 3456 and 38080.
+- <h3>Logs of a container:</h3>
 
-- Volume Mapping: Suppose we are running a mysql container and we added lost of data in that container. Suppose we stop or remove the container all the data inside that container gets destroyed. So to map those inside data of that container with outside container folder within the docker host run the command `docker run -v folderoutside:folderinsideContainer imagename`. (21) 
+    - Suppose we ran container in detach state, and we need to view logs of it so run command `docker logs ID_or_name`. 
 
-- Run multiple parameters using this `docker run -p 38282:8080 --name=blue-app -e APP_COLOR=blue -d kodekloud/simple-webapp`.
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/23.PNG)
+
+
+- <h3>PORT Mapping:</h3> 
+
+    - The underlying host where docker is installed is called a docker host or docker engine. 
+    
+    - Suppose we have web server application run on a docker container, we can see the web server but how other users can access that web application? Suppose that web application runs on PORT 5000, so I can access it using that port number but what IP must be use for accessing it by me?
+    
+    - Docker provides each container's an IP. Using that IP or using docker host IP only the host machine user can access it. Since containers host IP are only accessible from docker host machine (for me), so for other users we need to provide docker host IP with required particular port mapping for accessing our containerized web application. 
+
+    - To get container IP `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}container_name_or_id`.
+    
+    - Suppose we want users to access our web server using port 80 and my docker host IP is 192.168.1.5, so we can do it by running port mapping command `docker run -p ProvidedPort:DefaultPort image_name`. So we can map multiple port with the provided port of the container, but we cannot use the same mapped port again for other application. 
+
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/18.PNG)
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/19.PNG)
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/20.jpg)
+
+    - Considering below example here the exposed ports are 3456 and 80 and publish ports are 3456 and 38080.
+
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/24.PNG)
+
+- <h3>Volume Mapping:</h3>
+
+    - Suppose we are running a mysql container and we added lost of data in that container. Suppose we stop or remove the container all the data inside that container gets destroyed. So to map those inside data of that container with outside container folder within the docker host run the command `docker run -v folderoutside:folderinsideContainer imagename`. 
+
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/21.jpg)
+
+- <h3> Run multiple parameters in docker command</h3>
+
+    - To run multiple parameters in docker command we can reference this command `docker run -p 38282:8080 --name=blue-app -e APP_COLOR=blue -d kodekloud/simple-webapp`.
 
 
 ## Environment Variables
