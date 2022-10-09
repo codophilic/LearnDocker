@@ -72,23 +72,24 @@ Containers  | VM
     - A major advantage of Docker is its large community. If we want to build an image, we can go to Docker Hub and search if the image we need is available.
 
 - **Containers:**
-    
+
     - A container is an instance of an image. Each container can be identified by its ID or by a unique name. Going back to our Java development analogy, we could say that a container is like an instance (*object*) of a class. So images is a class and container is an object or instance of that class.
 
     - Docker defines 7 states for a container:
-        - Created
 
-        - Restarting
+        1. Created
+
+        2. Restarting
         
-        - Running
+        3. Running
         
-        - Removing
+        4. Removing
         
-        - Paused
+        5. Paused
         
-        - Exited
+        6. Exited
         
-        - Dead. 
+        7. Dead. 
 
     - This is important to know. Since a container is just an instance of the image, it doesn't need to be running all time.
 
