@@ -364,7 +364,7 @@ Containers  | VM
 
 ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/47.jpg)
 
-- Now the source code file change is stored in the container layer, and it will be there as long as container is alive. So to persist our changes we can add volumes to the containers. *(Refer the storage section)*[https://github.com/codophilic/LearnDocker/blob/main/Docker.md#docker-storage-system]
+- Now the source code file change is stored in the container layer, and it will be there as long as container is alive. So to persist our changes we can add volumes to the containers. ![Refer the storage section](https://github.com/codophilic/LearnDocker/blob/main/Docker.md#docker-storage-system)
 
 
 ### CMD vs ENTRYPOINT
