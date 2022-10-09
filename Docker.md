@@ -77,9 +77,9 @@ Containers  | VM
 
     - Docker defines 7 states for a container:
 
-        1. Created
+      1. Created
 
-        2. Restarting
+      2. Restarting
         
         3. Running
         
