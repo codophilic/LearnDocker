@@ -403,67 +403,99 @@ Containers  | VM
 
 ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/41.jpg)
 
-- Bridge is the default network which gets attached to the containers. All the containers gets an internally IP which usually ranges 172.17.. series. The containers can access each other using this internal IP's.
+- **Bridge is the default network** which gets attached to the containers. All the containers gets an internal IP which usually ranges 172.17.... series. The containers can access each other using this internal IP's.
 
-- Host network is the network of the Docker Host. So whenever we want to access container externally we map this to the host network port. So when we run a web server on a host port it will be automatically accessible on the host port but we won't able to run multiple containers on the same port.
+- Host network is the network of the Docker Host. So whenever we want to access container externally we map this to the host network port. When we run a web server on a host port it will be automatically accessible on the host port, but we won't able to run multiple containers on the same port.
 
-- With the none network , containers are not attach to any network and does not have any access to the external network or any other containers. They run in an isolated network.
-(42)
+- With the none network, containers are not attached to any network and does not have any access to the external network or any other containers. They run in an isolated network.
 
-- Docker crates one internal network bridge , so to have multiple internal network bridge using the command (43)
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/42.jpg)
 
-- By using the inspect command, we can check which type of network is assign to the container.(44)
+- Docker creates one internal network bridge, so to have multiple internal network bridge using the command.
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/43.jpg)
+
+- By using the inspect command, we can check which type of network is assign to the container. **Command:  `docker network inspect bridge`**
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/44.jpg)
 
 - `docker network ls` command list all network on the host.
 
-- We can inspect network also. `docker network inspect bridge`
+- Whenever the system gets reboot, it's not sure the container will have the same IP ID.
 
-- Whenever the system gets reboot , its not sure the container will have the same IP ID.
-
-- `docker run --name alpine-2 --network none alpine`
 
 ## Docker Storage system
 
-- Docker stores the data on the local file system. When we install docker , it creates a folder structure */var/lib/Docker* (Linux) , *C:\ProgramData\DockerDesktop* (Windows) and *~/Library/Containers/com.docker.docker/Data/vms/0/* (MacOS).
+- Docker stores the data on the local file system. When we install docker, it creates a folder structure */var/lib/Docker* (Linux), *C:\ProgramData\DockerDesktop* (Windows) and *~/Library/Containers/com.docker.docker/Data/vms/0/* (macOS).
 
-- Under these there are multiple folders. Under this multiple folders docker manages the files system for images and containers. All the images are stored under image folders.(45)
+- Under these there are multiple folders. Under this multiple folder's docker manages the file's system for images and containers. All the images are stored under image folders.
 
-- Volumes are used to persist the data of the container. So first we need to create a volume for that container by running command `docker volume create volume_nameforthat_container`. This will create volume_nameforthat_container folder under volume folder. We need to mount this volume on the container by running the command `docker run -v volume_nameforthat_container:directory_of_image_wheredataispresent imagename`. These gets stored under the docker host. If we don't run the command `docker volume create volume_nameforthat_container` and run the command `docker run -v volume_nameforthat_container:directory_of_image_wheredataispresent imagename` it will automatically create the volume and mount it on that container. (48). This is called volume mounting.
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/45.JPG)
 
-- Suppose we want to mount the data in an external directory under docker host by not creating volume under docker host, we can do this by running the command `docker run -v external_complete_directory_underdockerhost:directory_of_image_wheredataispresent imagename`. This is called Bind mounting. (49)
+- Volumes are used to persist the data of the container. So first we need to create a volume for that container by running command `docker volume create volume_nameforthat_container`. This will create *volume_nameforthat_container* folder under *volume* folder. We need to mount this volume on the container by running the command `docker run -v volume_nameforthat_container:directory_of_image_wheredataispresent imagename`. These gets stored under the docker host. If we don't run the command `docker volume create volume_nameforthat_container` and run the command `docker run -v volume_nameforthat_container:directory_of_image_wheredataispresent imagename` it will automatically create the volume and mount it on that container. This is called volume mounting.
 
-- The new way to mount the volumes on the container.(50)
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/48.jpg)
 
-- Docker uses storage drivers to enable the layer architecture of images and perfoming mount operations. The common storage drivers are belows. Storage driver depends on OS. Overlays2 for Ubuntu. (51)
+- Suppose we want to mount the data in an external directory under docker host by not creating volume under docker host, we can do this by running the command `docker run -v external_complete_directory_underdockerhost:directory_of_image_wheredataispresent imagename`. This is called Bind mounting. 
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/49.jpg)
+
+- The new way to mount the volumes on the container.
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/50.jpg)
+
+- Docker uses storage drivers to enable the layer architecture of images and performing mount operations. The common storage drivers are below. Storage driver depends on OS. Overlays2 for Ubuntu.
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/51.jpg)
 
 ## Docker Compose
 
-- When an application uses multiple images and those images needs to be connected with each other use use a docker-compose.yml file to perform this. Using docker compose we can create a configuration file in YAML format and put together different services and option specific to this to run them. This is applicable on single docker host. (52) 
+- When an application uses multiple images and those images needs to be connected with each other use a **docker-compose.yml** file to perform this. Using docker compose we can create a configuration file in YAML format and put together different services and provide options specific to this to run them. This is applicable on single docker host. 
 
-- Sample application - voting appplication. The voting-app is a simple application which provides user interface to vote which is developed in python. In memory DB, when the user makes selection the vote is stored in the redis. The provided vote is process by worker which is an application written in .NET .The worker application takes the new vote and update the data base which is in PostgreSQL. This SQL has tables which is simply the category. Finally the result is displayed in result-app which is web application based on NodeJS. (53)
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/52.jpg)
 
-- Now all the images for the voting application are build now we are running each containers seperately. Now to link these application which each other we use a parameter `--link` (which will be deprecated). (54). Link can be use to link multiple container. (55 56) 
+- Considering a sample application - voting application. The voting-app is a simple application which provides user interface to vote which is developed in python. In memory DB, when the user makes selection the vote is stored in the Redis. The provided vote is process by worker which is an application written in .NET. The worker application takes the new vote and update the database which is in PostgreSQL. This SQL has tables which is simply the category. Finally, the result is displayed in result-app which is web application based on NodeJS. 
 
-- So we can use all the command and create a docker-compose file. After writing the docker-compose.yml file we run the file using `docker-compose up`. (57)
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/53.jpg)
 
-- To build an image we can use build key. (58)
+- Now all the images for the voting application are build now we are running each container separately. Now to link this application which each other we use a parameter `--link` (which will be deprecated).
 
-- Different version of docker compose file.(59)
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/54.jpg)
+
+- Link can be used to link multiple container. 
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/55.jpg)
+
+- So we can use all the command and create a docker-compose file. After writing the **docker-compose.yml** file we run the file using `docker-compose up`.
+
+- To build an image we can use build key.
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/56.jpg)
+
+- Different version of docker compose file.
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/57.jpg)
 
 ## Docker registry (Docker Hub)
 
 - Whenever we run a docker command `docker run imagename` it first find if the image is present locally if not then pull that image from docker registry. 
 
-- The complete naming format is like **imagename(Username)/Imagename(Repositoryname)**. If we don't provide username docker by default assume the repository name as username. (60)
+- The complete naming format is like **imagename(Username)/Imagename(Repositoryname)**. If we don't provide username docker by default assume the repository name as username. 
 
-- The registry repository can be public or private. To use an image of private repository first we need to login using commands.(61)
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/58.jpg)
 
-- In organization suppose we want to deploy the image by not making it private and not accessible to all. We can do this by using tag. (62)
+- The registry repository can be public or private. To use an image of private repository first we need to log in using commands.
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/59.jpg)
+
+- In organization suppose we want to deploy the image by not making it private and not accessible to all. We can do this by using tag.
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/60.jpg)
 
 
 ## Orchestration
 
-- Container Orchestration is a solution which consists sets of tools and scripts that can help docker host containers to have multiple docker host that host 1000's of containers so even if one host fails the application will be still accessible due to other containers.
+- Container Orchestration is a solution which consists sets of tools and scripts that can help docker host containers to have multiple docker host that host 1000s of containers so even if one host fails the application will be still accessible due to other containers.
 
 - Container Orchestration helps to deploy all the instance on multiple host using single command based on docker swarm. Due to Orchestration we can scale up or down the load and can increase or decrease the load based on the traffic.
 
