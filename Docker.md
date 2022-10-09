@@ -27,7 +27,7 @@ tech agrees to run on that OS) and other dependencies.
 ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/1.PNG)
 
 
-<a href="url"> <img src="https://github.com/codophilic/LearnDocker/blob/main/Docker/1.PNG" align="centre" height="48" width="48" ></a>
+<a href="url"> <img src="https://github.com/codophilic/LearnDocker/blob/main/Docker/1.PNG" align="left" height="480" width="480" ></a>
 
 - Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. 
 
