@@ -63,7 +63,7 @@ Containers  | VM
 
 ## Images and Containers.
 
-- **Images:**
+- <h3>Images:<h3>
 
    - Images are read-only templates containing instructions for creating a container. A Docker image creates containers to run on the Docker platform. Think of an image like a blueprint or snapshot of what will be in a container when it runs. Images are built as a series of layers. Layers are assembled on top of one another. 
 
@@ -71,15 +71,15 @@ Containers  | VM
 
     - A major advantage of Docker is its large community. If we want to build an image, we can go to Docker Hub and search if the image we need is available.
 
-- **Containers:**
+- <h3>Containers:<h3>
 
     - A container is an instance of an image. Each container can be identified by its ID or by a unique name. Going back to our Java development analogy, we could say that a container is like an instance (*object*) of a class. So images is a class and container is an object or instance of that class.
 
-    - Docker defines 7 states for a container:
+    1. Docker defines 7 states for a container:
 
-      1. Created
+        1. Created
 
-      2. Restarting
+        2. Restarting
         
         3. Running
         
