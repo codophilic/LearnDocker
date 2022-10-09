@@ -39,20 +39,18 @@ tech agrees to run on that OS) and other dependencies.
    1. **OS kernel**
    2. **Sets of software components** 
 
-- So e.g for a Linux OS, the OS kernel which interacts with the underlying hardware is common for software components like Ubuntu,CentOS etc. These software components may have different user interfac, file managers etc. 
+- For a Linux OS, the OS kernel which interacts with the underlying hardware is common for software components like Ubuntu, CentOS etc. These software components may have different user interface, file managers etc. 
 
-- The Docket containers share this underlying OS kernel.
+- Docker containers share this underlying OS kernel. So let's say we have installed Docker on Ubuntu OS, docker can run any other type of software component of Linux OS on top of Ubuntu because they share same OS kernel which is Linux.
 
-- So let's say we have installed Docker on Ubuntu OS. So Docker can run any other type of Linux OS on top of Ubuntu because they share same OS kernel which is linux.
+- We cannot run a windows based container on a Docker host with Linux kernel. For that we will require Docker hosted on Windows kernel.
 
-- So we cannot run a windows based container on a Docker host with Linux kernel. For that we will required Docker hosted on windows kernel.
-
-- In windows we have a subsystem of linux where we can execute linux operations (WSL). So a linux container can be run on windows hosted docker.
+- In windows, we have a subsystem of Linux where we can execute Linux operations (WSL). So a docker having Linux container can be run on Windows hosted docker.
 
 
 ## Comparing Virtual machines and Containers.
 
-- Incase of docker we have the underlying hardware, on top of it the OS and then the Docker installed on that OS. Docker manages the containers and run with their libraries and dependencies. Incase of Virtual machines there is a hypervisor (A hypervisor, also known as a virtual machine monitor or VMM, is software that creates and runs virtual machines (VMs). A hypervisor allows one host computer to support multiple guest VMs by virtually sharing its resources, such as memory and processing. )on top of the hardware and on them the VM are there. Each VM has its own OS inside it with its dependencies and libraries.
+- In case of docker we have the underlying hardware, on top of it the OS and then the Docker installed on that OS. Docker manages the containers and run with their libraries and dependencies. Incase of Virtual machines there is a hypervisor (A hypervisor, also known as a virtual machine monitor or VMM, is software that creates and runs virtual machines (VMs). A hypervisor allows one host computer to support multiple guest VMs by virtually sharing its resources, such as memory and processing. )on top of the hardware and on them the VM are there. Each VM has its own OS inside it with its dependencies and libraries.
 
 - Incase of VM, higher utilization of hardware takes place since there are multiple OS kernels. It also consume higher disk space. Whereas dockers containers are light weight which also makes boot up process faster.
 
