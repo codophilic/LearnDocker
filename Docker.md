@@ -118,7 +118,7 @@ Containers  | VM
 
 - Running an image from Docker Hub repository having name **whalesay**.
 
-[](https://github.com/codophilic/LearnDocker/blob/main/Docker/3.PNG)
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/3.PNG)
 
 ## Docker commands
 
@@ -126,22 +126,23 @@ Containers  | VM
 
     - Suppose if we run `docker run nginx`, this will run an instance of the nginx application from the docker host (*if it exists on the machine*) and if the image is not found then it will reach the docker hub to find the image, and it will pull that image down in the machine (*it happens for the first time*).
 
-[](https://github.com/codophilic/LearnDocker/blob/main/Docker/4.PNG)
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/4.PNG)
 
 - <h3>List command:</h3> 
 
     - **Containers:** Suppose if we run `docker ps` or `docker container ls ` it will list all running containers with some information about them like ID, using which image name, command, creation time etc. All containers get automatically a random ID and random name.
 
-    [](https://github.com/codophilic/LearnDocker/blob/main/Docker/5.PNG)
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/5.PNG)
 
     - **Images:** Suppose we want to list images  run command `docker images`.
+    
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/8.PNG)
 
-    [](https://github.com/codophilic/LearnDocker/blob/main/Docker/8.PNG)
 
 - <h3>Stop Command:</h3>
     - Suppose if we want to stop a container we need to have its ID or name e.g `docker stop sleepy_diffie`.
 
-    [](https://github.com/codophilic/LearnDocker/blob/main/Docker/6.PNG)
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/6.PNG)
 
 - Remove command: 
 
