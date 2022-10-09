@@ -75,7 +75,7 @@ Containers  | VM
 
     - A container is an instance of an image. Each container can be identified by its ID or by a unique name. Going back to our Java development analogy, we could say that a container is like an instance (*object*) of a class. So images is a class and container is an object or instance of that class.
 
-    1. Docker defines 7 states for a container:
+    - Docker defines 7 states for a container:
 
         1. Created
 
