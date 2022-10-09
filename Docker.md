@@ -58,7 +58,8 @@ Containers  | VM
 
 - ***Mostly Dockers and VM work together for an application. Dockers containers are hosted on VM's.***
 
-[](https://github.com/codophilic/LearnDocker/blob/main/Docker/2.PNG)
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/2.PNG)
 
 
 ## Images and Containers.
