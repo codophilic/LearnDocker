@@ -14,7 +14,6 @@ tech agrees to run on that OS) and other dependencies.
 ## What is Docker?
 
 - Docker provides the ability to package and run an application in a loosely isolated environment called a container. The isolation and security allows you to run many containers simultaneously on a given host. 
-
 <details>
     <summary><h3>What are containers?</h3></summary>
         <p>1. A container is a standard unit of software that packages up code and all its dependencies, so the application runs quickly and reliably from one computing environment to another.</p>
