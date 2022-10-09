@@ -36,8 +36,8 @@ tech agrees to run on that OS) and other dependencies.
 ## Basic concepts of Operating System 
 
 - Every OS consists of two main common components
-   - 1. **OS kernel**
-   - 2. **Sets of software components** 
+   1. **OS kernel**
+   2. **Sets of software components** 
 
 - So e.g for a Linux OS, the OS kernel which interacts with the underlying hardware is common for software components like Ubuntu,CentOS etc. These software components may have different user interfac, file managers etc. 
 
