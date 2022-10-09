@@ -22,8 +22,9 @@ tech agrees to run on that OS) and other dependencies.
     2. A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings.
 
     3. Containers are lightweight and contain everything needed to run the application, so you do not need to rely on what is currently installed on the host. You can easily share containers while you work, and be sure that everyone you share with gets the same container that works in the same way.
+    
 
-[](https://github.com/codophilic/LearnDocker/blob/main/Docker/1.PNG)
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/1.PNG)
 
 - Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. 
 
