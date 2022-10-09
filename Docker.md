@@ -259,75 +259,112 @@ Containers  | VM
 
 ## Environment Variables
 
-- Suppose there is a web-server application which uses a functionality background color. The web-server application sets that functionality as an Environment variable which state whenever we run that web-server application we can provide our own color to that environment variable and the web-page will have that background color. So here we have set environment variable as **APP_COLOR**. (25)
+- Suppose there is a web-server application which uses a functionality for background color of the web page. The web-server application sets that functionality as an **environment variable** which state whenever we run that web-server application we can provide our own color to that environment variable and the web-page will have that background color. So here, we provide the value to that environment variable as **APP_COLOR**. 
 
-- Once that application is dockerized to provide that environment variable name use command `docker run -e ENVIRONMENT_VARIABLE_NAME=VALUE imagename`. (26,27)
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/25.jpg)
 
-- Inspect environment variable: Find all the environment variables of a running container using command `docker inspect CONTAINER_ID` which will have Config parameters which list all environment variables. (28)
+- To provide that environment variable name use command `docker run -e ENVIRONMENT_VARIABLE_NAME=VALUE imagename`. 
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/26.jpg)
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/27.jpg)
+
+- <h3>Inspect environment variable:</h3> 
+
+    - Find all the environment variables of a running container using command `docker inspect CONTAINER_ID` which will have Config parameters which list all environment variables. 
+
+    ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/28.jpg)
 
 ## Docker Architecture
 
 
 - Docker uses a client-server architecture. The Docker client talks to the Docker daemon, which does the heavy lifting of building, running, and distributing your Docker containers. The Docker client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon. The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface. Another Docker client is Docker Compose, that lets you work with applications consisting of a set of containers.
 
-The Docker daemon
-The Docker daemon (dockerd) listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes. A daemon can also communicate with other daemons to manage Docker services.
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/archi.JPG)
 
-The Docker client
-The Docker client (docker) is the primary way that many Docker users interact with Docker. When you use commands such as docker run, the client sends these commands to dockerd, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.
+- <h3>The Docker daemon</h3>
+    
+    - The Docker daemon (dockerd) listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes. A daemon can also communicate with other daemons to manage Docker services.
 
-Docker registries
-A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default. You can even run your own private registry.
+- <h3>The Docker client</h3>
 
-When you use the docker pull or docker run commands, the required images are pulled from your configured registry. When you use the docker push command, your image is pushed to your configured registry.
+    - The Docker client (docker) is the primary way that many Docker users interact with Docker. When you use commands such as docker run, the client sends these commands to **dockerd**, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.
 
-Docker objects
-When you use Docker, you are creating and using images, containers, networks, volumes, plugins, and other objects.
+- <h3>Docker registries</h3>
+
+    - A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default. You can even run your own private registry.
+    
+    - When you use the docker pull or docker run commands, the required images are pulled from your configured registry. When you use the docker push command, your image is pushed to your configured registry.
+
+- <h3> Docker objects </h3>
+
+    - When you use Docker, you are creating and using images, containers, networks, volumes, plugins, and other objects.
 
 
 ## Docker Images
 
-### Creating an Image of n application 
+### Steps to create an Image 
 
-- Here we are containerize an application a simple web application based on flask.
+- Here we are containerizing a simple web application based on flask.
 
-- Before creating an image list down all requirements and steps for deploying an application. (29)
+- Before creating an image list down all requirements and steps for deploying an application.
 
-- After listing down all the steps create a file name **Dockerfile** which is our image. After writting the dockerfile we need to build it and provide it a tag. So use command `docker build Dockerfile -t DockerHubUsername/provideImageName`. Syntax `docker build  -t ImageName:TagName directory`
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/29.jpg)
 
-- To make is available we need to push that build file. So run the command `docker push DockerHubUsername/provideImageName`. (30)
+- After listing down all the steps, create a file name **Dockerfile** which is our image. After writing the **Dockerfile** we need to build it and provide it a tag. So use command `docker build Dockerfile -t DockerHubUsername/provideImageName`. Syntax `docker build  -t ImageName:TagName directory`
+
+- To make is available we need to push that build file. So run the command `docker push DockerHubUsername/provideImageName`.
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/30.jpg)
 
 - Check about image using `docker inspect imagename`.
 
-- Check which OS does the downloaded images used docker run python:3.6 cat /etc/*release*
+- To check which OS does the downloaded images used run command `docker run imagename cat /etc/*release*`
 
-- suppose if a latest version is huge in size we can use its previous version which has less size.
+- Suppose if latest version is huge we can use its previous version which has less size.
 
-### Components of Dockerfile
+### Components of Dockerfile Image
 
-- Dockerfile consits of two components 1. Instruction and 2. Argument
+- Dockerfile consists of two components 
+    1. Instruction 
+    2. Argument
 
-- Instruction are **FROM , RUN , COPY , ENTRYPOINT** (31). Each of them perform specific action while creating an image. 
+- Instruction are **FROM** ,**RUN** ,**COPY** ,**ENTRYPOINT**. Each of them perform specific action while creating an image. 
 
-- Arguments are the (32) text provided by users. 
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/31.jpg)
 
-- Every dockerfile will have an image based on OS and it will always start **FROM** instruction. The **RUN** instructions tells docker to install all dependencies (33). The **COPY** instruction copies the local files to the docker image. So here we are copying all the files *.* to inside of image folder */opt/source-code*. The **ENTRYPOINT** instruction allow us to specify a command that will be run when the image is run by the container.
+- Arguments are the text provided by users. 
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/32.jpg)
+
+- Every **Dockerfile** will have an image based on OS, and it will always start **FROM** instruction. The **RUN** instructions tell docker to install all dependencies. The **COPY** instruction copies the local files to the docker image. So here we are copying all the files ***.*** to inside of image folder */opt/source-code*. The **ENTRYPOINT** instruction allow us to specify a command that will be run when the image is run by the container.
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/33.jpg)
 
 ### Images Layered architecture
 
 - When docker builds an image it creates multiple layers. Each line of instructions creates a new layer in the Docker image taking the changes of the previous layers.
 
-- Each layers stores the changes from the previous layer, it is reflected in the size. We can see this layers and information by running the command `docker history DockerHubUsername/provideImageName`. (34)
+- Each of the layers stores the changes from the previous layer, it is reflected in the size. We can see these layers and information by running the command `docker history DockerHubUsername/provideImageName`.
 
-- We can see various steps involved when we run a docker build command.(35)
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/34.jpg)
 
-- All the layers are cached and if we one layers fails all layers after it does not get executed. After fixing the failure layer, when we run the docker build command it will directly starts from that layer where it fails. Even if we add a new layer in the dockerfile it will not start all over again. (36) Due to this images are build at a faster rate. This is helpful when there is an update in the source code of an application.
+- We can see various steps involved when we run a docker build command.
 
-- The layers of image are called docker image layers. We cannot edit these layers once the build is completed  which is always in the Read-mode. When we run a container based off that particular image, docker creates a container layer on top of that image layers which is a read-write layer. This container layer stores all the data related to that particular container e.g logs, temp files etc. The life of this container layer is as long as the container is alive. When the container is destroyed all the stored data changes gets destroyed. (46).
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/35.jpg)
 
-- Suppose a code is used in the image and that image is used by multiple containers and if we want to modify that image for testing purpose it might affect all the containers. So to test our requirement with the source code file we can logged into one container and modify that code file for that particular container only and check our testing. Docker creates copy of that source code file and present it in the container layer where we have read-write access. So the images is not affected. (47)
+- All the layers are cached and if we one layers fails all layers after it does not get executed. After fixing the failure layer, when we run the docker build command it will directly start from that layer where it fails. Even if we add a new layer in the **Dockerfile** it will not start all over again. Due to such processing of an images build take place at a faster rate. This is helpful when there is an update in the source code of an application.
 
-- Now the source code file change is stored in the container layer and it will be there as long as container is alive. So to persist our changes we can add volumes to the containers. *( Refer the storage section )*
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/36.jpg)
+
+- The layers of image are called docker image layers. We cannot edit these layers once the build is completed which is always in the **Read-mode**. When we run a container based off that particular image, docker creates a container layer on top of that image layers which is a **read-write** layer. This container layer stores all the data related to that particular container e.g. logs, temp files etc. The life of this container layer is as long as the container is alive. When the container is destroyed all the stored data changes gets destroyed.
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/46.jpg)
+
+- Suppose a code is used in the image and that image is used by multiple containers and if we want to modify that image for testing purpose it might affect all the containers. So to test our requirement with the source code file we can log into one container and modify that code file for that particular container only and check our testing. Docker creates copy of that source code file and present it in the container layer where we have read-write access. So the images is not affected.
+
+![](https://github.com/codophilic/LearnDocker/blob/main/Docker/47.jpg)
+
+- Now the source code file change is stored in the container layer, and it will be there as long as container is alive. So to persist our changes we can add volumes to the containers. *(Refer the storage section)*[https://github.com/codophilic/LearnDocker/blob/main/Docker.md#docker-storage-system]
 
 
 ### CMD vs ENTRYPOINT
