@@ -2,13 +2,34 @@
 
 ## Why do we need Docker?
 
-- Suppose there is an full stack application which uses different technologies like NodeJS, MongoDB, Nginx etc, which requires libraries , OS version ( checking the compatiblitiy which all tech agrees to run on that OS ) and other dependencies. 
+- Suppose there is a full stack application which uses different technologies like NodeJS, MongoDB, Nginx etc., which requires libraries, OS version (checking the compatibility where all these 
+tech agrees to run on that OS) and other dependencies. 
 
-- Apart from this if the application needs a new upgradation then again we need to check the compatiblity of those components.
+- Apart from this suppose the application needs a new upgrade then again we need to check the compatibility of those components.
 
-- Suppose there are different environments for an application testing , again we need to make sure those environments must have the required components and compatiblity to host our applications.
+- Suppose there are different environments for an application testing, again we need to make sure those environments must have the required components and compatibility to host our applications.
 
-- **So Docker help to solve these problem with the containers where all the components are placed in seperate containers consisting there required libraries and dependecies and those containers were executed**
+- **Docker help to solve this problem by providing its own component called containers where all the components are placed in separate containers consisting there required libraries and dependencies. Only these containers were executed**
+
+## What is Docker?
+
+- Docker provides the ability to package and run an application in a loosely isolated environment called a container. The isolation and security allows you to run many containers simultaneously on a given host. 
+
+### What are containers?
+
+    1. A container is a standard unit of software that packages up code and all its dependencies, so the application runs quickly and reliably from one computing environment to another. 
+
+    2. A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings.
+
+    3. Containers are lightweight and contain everything needed to run the application, so you do not need to rely on what is currently installed on the host. You can easily share containers while you work, and be sure that everyone you share with gets the same container that works in the same way.
+
+[](https://github.com/codophilic/LearnDocker/blob/main/Docker/1.PNG)
+
+- Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. 
+
+- By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
+
+
 
 
 ## Basic concepts of Operating System 
@@ -22,23 +43,6 @@
 - So we cannot run a windows based container on a Docker host with Linux kernel. For that we will required Docker hosted on windows kernel.
 
 - In windows we have a subsystem of linux where we can execute linux operations (WSL). So a linux container can be run on windows hosted docker.
-
-
-## What are containers?
-
-- A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. 
-
-- A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings. (1)
-
-## What is Docker?
-
-- Docker provides the ability to package and run an application in a loosely isolated environment called a container. The isolation and security allows you to run many containers simultaneously on a given host. 
-
-- Containers are lightweight and contain everything needed to run the application, so you do not need to rely on what is currently installed on the host. You can easily share containers while you work, and be sure that everyone you share with gets the same container that works in the same way.
-
-- Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. 
-
-- By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
 
 
 ## Comparing Virtual machines and Containers.
@@ -162,6 +166,25 @@ Exposed ports are 3456 and 80 and publish ports are 3456 and 38080.
 - Once that application is dockerized to provide that environment variable name use command `docker run -e ENVIRONMENT_VARIABLE_NAME=VALUE imagename`. (26,27)
 
 - Inspect environment variable: Find all the environment variables of a running container using command `docker inspect CONTAINER_ID` which will have Config parameters which list all environment variables. (28)
+
+## Docker Architecture
+
+
+- Docker uses a client-server architecture. The Docker client talks to the Docker daemon, which does the heavy lifting of building, running, and distributing your Docker containers. The Docker client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon. The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface. Another Docker client is Docker Compose, that lets you work with applications consisting of a set of containers.
+
+The Docker daemon
+The Docker daemon (dockerd) listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes. A daemon can also communicate with other daemons to manage Docker services.
+
+The Docker client
+The Docker client (docker) is the primary way that many Docker users interact with Docker. When you use commands such as docker run, the client sends these commands to dockerd, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.
+
+Docker registries
+A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default. You can even run your own private registry.
+
+When you use the docker pull or docker run commands, the required images are pulled from your configured registry. When you use the docker push command, your image is pushed to your configured registry.
+
+Docker objects
+When you use Docker, you are creating and using images, containers, networks, volumes, plugins, and other objects.
 
 
 ## Docker Images
