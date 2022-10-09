@@ -1,5 +1,14 @@
 # LearnDocker
 
+## Labs
+
 https://kodekloud.com/topic/labs-docker-run-commands/
 
-    - Exposed ports are 3456 and 80 and publish ports are 3456 and 38080.
+## Youtube Video
+
+https://www.youtube.com/watch?v=fqMOX6JJhGo
+
+## Index
+
+[ti](#Docker.md/Learn-About-Docker)
+
