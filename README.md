@@ -10,5 +10,5 @@ https://www.youtube.com/watch?v=fqMOX6JJhGo
 
 ## Index
 
-[ti](#Docker.md/Learn-About-Docker)
+[ti](https://github.com/codophilic/LearnDocker/blob/main/Docker.md#learn-about-docker)
 
