@@ -24,7 +24,7 @@ tech agrees to run on that OS) and other dependencies.
 </details>
 
 
-<a href="url"> <img src="https://github.com/codophilic/LearnDocker/blob/main/Docker/1.PNG" align="center" height="500" width="800" ></a>
+<a href="url"> <img src="https://github.com/codophilic/LearnDocker/blob/main/Docker/1.PNG" class="center" height="500" width="800" ></a>
 
 
 
