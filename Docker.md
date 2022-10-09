@@ -17,12 +17,12 @@ tech agrees to run on that OS) and other dependencies.
 
 ### What are containers?
 
-    1. A container is a standard unit of software that packages up code and all its dependencies, so the application runs quickly and reliably from one computing environment to another. 
+    - A container is a standard unit of software that packages up code and all its dependencies, so the application runs quickly and reliably from one computing environment to another. 
 
-    2. A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings.
+    - A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings.
 
-    3. Containers are lightweight and contain everything needed to run the application, so you do not need to rely on what is currently installed on the host. You can easily share containers while you work, and be sure that everyone you share with gets the same container that works in the same way.
-    
+    - Containers are lightweight and contain everything needed to run the application, so you do not need to rely on what is currently installed on the host. You can easily share containers while you work, and be sure that everyone you share with gets the same container that works in the same way.
+
 
 ![](https://github.com/codophilic/LearnDocker/blob/main/Docker/1.PNG)
 
