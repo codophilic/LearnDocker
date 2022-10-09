@@ -91,13 +91,13 @@ Containers  | VM
         
         7. Dead. 
 
-    - This is important to know. Since a container is just an instance of the image, it doesn't need to be running all time.
+    - A container is just an instance of the image, it doesn't need to be running all time.
 
 - For an example, in docker if run command, **`docker run hello-world`**  
 
     1) **`docker`**: It is docker engine and used to run docker program. It tells to the operating system that you are running docker program.
 
-    2) **`run`**: This subcommand is used to create and run a docker container.
+    2) **`run`**: This sub-command is used to create and run a docker container.
 
     3) **`hello-world`**: It is a name of an image. You need to specify the name of an image which is to load into the container.
 
@@ -116,19 +116,32 @@ Containers  | VM
 
 ## Running a Docker command
 
-- Running an image from Docker Hub repository having name whalesay (3)
+- Running an image from Docker Hub repository having name **whalesay**.
+
+[](https://github.com/codophilic/LearnDocker/blob/main/Docker/3.PNG)
 
 ## Docker commands
 
-- Run command: Suppose if we run `docker run nginx` , this will run an instance of the nginx application from the docker host if it exists on the machine and if the image is not found then it will reach the docker hub to find the image and it will pull that image down in the machine ( It happens for the first time ).
+- <h3>Run command:</h3> 
 
-- List command: 
+    - Suppose if we run `docker run nginx`, this will run an instance of the nginx application from the docker host (*if it exists on the machine*) and if the image is not found then it will reach the docker hub to find the image, and it will pull that image down in the machine (*it happens for the first time*).
 
-- A. Suppose if we run `docker ps` or `docker container ls `it will list all running containers with some information about them like ID, image name, command, creation time etc. Each containers gets automatically a random ID and random name. (5)
+[](https://github.com/codophilic/LearnDocker/blob/main/Docker/4.PNG)
 
-- B. Suppose we want to list images  run command `docker images`. (8)
+- <h3>List command:</h3> 
 
-- Stop Command: Suppose if we want to stop a container we need to have its ID or name e.g `docker stop sleepy_diffie`.(6)
+    - **Containers:** Suppose if we run `docker ps` or `docker container ls ` it will list all running containers with some information about them like ID, using which image name, command, creation time etc. All containers get automatically a random ID and random name.
+
+    [](https://github.com/codophilic/LearnDocker/blob/main/Docker/5.PNG)
+
+    - **Images:** Suppose we want to list images  run command `docker images`.
+
+    [](https://github.com/codophilic/LearnDocker/blob/main/Docker/8.PNG)
+
+- <h3>Stop Command:</h3>
+    - Suppose if we want to stop a container we need to have its ID or name e.g `docker stop sleepy_diffie`.
+
+    [](https://github.com/codophilic/LearnDocker/blob/main/Docker/6.PNG)
 
 - Remove command: 
 
